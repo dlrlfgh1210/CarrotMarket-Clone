@@ -38,7 +38,7 @@ class MyContainer extends StatelessWidget {
             style: TextStyle(
               color: textColor,
               fontWeight: FontWeight.w800,
-              fontSize: 15,
+              fontSize: 17,
             ),
           ),
           const SizedBox(
@@ -48,8 +48,8 @@ class MyContainer extends StatelessWidget {
             login!,
             style: TextStyle(
               color: loginTextColor,
-              fontWeight: FontWeight.w900,
-              fontSize: 15,
+              fontWeight: FontWeight.w700,
+              fontSize: 17,
             ),
           )
         ],

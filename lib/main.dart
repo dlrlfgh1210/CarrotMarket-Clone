@@ -13,6 +13,15 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white,
+        appBarTheme: const AppBarTheme(
+            foregroundColor: Colors.black,
+            backgroundColor: Colors.white,
+            elevation: 0,
+            titleTextStyle: TextStyle(
+              color: Colors.black,
+              fontSize: 20,
+              fontWeight: FontWeight.w500,
+            )),
       ),
       home: const SignUpScreen(),
     );

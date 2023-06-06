@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_carrot_market/sign_up/container.dart';
+import 'package:flutter_carrot_market/log_in/log_in_screen.dart';
+import 'package:flutter_carrot_market/sign_up/my_container.dart';
+import 'package:flutter_carrot_market/sign_up/username_screen.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -9,6 +11,22 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
+  void onLogInTap(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const LogInScreen(),
+      ),
+    );
+  }
+
+  void onSignUpTap(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const UsernameScreen(),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,28 +62,35 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   height: 10,
                 ),
                 const Text(
-                  '내 동네를 설정하고\n당근마켓을 시작해보세요.',
+                  '내 동네를 설정하고 \n 당근마켓을 시작해보세요.',
                   style: TextStyle(
                     fontSize: 15,
                     fontWeight: FontWeight.w500,
                     color: Colors.black,
                   ),
+                  textAlign: TextAlign.center,
                 ),
                 const SizedBox(
                   height: 200,
                 ),
-                MyContainer(
-                  todo: '시작하기',
-                  login: '',
-                  bgColor: Colors.amber.shade900,
-                  textColor: Colors.white,
+                GestureDetector(
+                  onTap: () => onSignUpTap(context),
+                  child: MyContainer(
+                    todo: '시작하기',
+                    login: '',
+                    bgColor: Colors.amber.shade900,
+                    textColor: Colors.white,
+                  ),
                 ),
-                const MyContainer(
-                  todo: '이미 계정이 있나요?',
-                  login: '로그인',
-                  bgColor: Colors.white,
-                  textColor: Colors.grey,
-                  loginTextColor: Colors.amber,
+                GestureDetector(
+                  onTap: () => onLogInTap(context),
+                  child: MyContainer(
+                    todo: '이미 계정이 있나요?',
+                    login: '로그인',
+                    bgColor: Colors.white,
+                    textColor: Colors.grey,
+                    loginTextColor: Colors.amber.shade900,
+                  ),
                 )
               ],
             ),
