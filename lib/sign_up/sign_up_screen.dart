@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_carrot_market/log_in/log_in_screen.dart';
-import 'package:flutter_carrot_market/sign_up/email_form.dart';
-import 'package:flutter_carrot_market/sign_up/password_check_form.dart';
-import 'package:flutter_carrot_market/sign_up/password_form.dart';
-import 'package:flutter_carrot_market/sign_up/username_form.dart';
+import 'package:flutter_carrot_market/sign_up/change_color_button.dart';
+import 'package:flutter_carrot_market/sign_up/sign_up_form.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -88,7 +86,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     if (!regExp.hasMatch(passwordCheck)) {
       return '특수문자, 대소문자, 숫자 등 8~15자로 입력하세요.';
     }
-    if (password != passwordCheck) {
+    if (passwordCheck != password) {
       return '비밀번호가 일치하지 않습니다.';
     }
     return null;
@@ -99,7 +97,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
   }
 
   onSubmit() {
-    if (email.isEmpty ||
+    if (username.isEmpty ||
+        email.isEmpty ||
         isEmailValid() != null ||
         password.isEmpty ||
         isPasswordValid() != null ||
@@ -134,59 +133,39 @@ class _SignUpScreenState extends State<SignUpScreen> {
               const SizedBox(
                 height: 10,
               ),
-              UsernameForm(
+              SignUpForm(
                 signUpInfo: '별명',
                 signUpHint: '별명을 만들어 주세요',
                 signUpController: usernameController,
               ),
-              EmailForm(
+              SignUpForm(
                 signUpInfo: '이메일',
                 signUpHint: '예: carrotmarket123@carrot.com',
                 signUpController: emailController,
-                // finished: onSubmit,
+                signUpKeyBoard: TextInputType.emailAddress,
                 isValid: isEmailValid(),
               ),
-              PasswordForm(
+              SignUpForm(
                 signUpInfo: '비밀번호',
                 signUpHint: '비밀번호를 입력해주세요',
                 signUpController: passwordController,
-                // finished: onSubmit,
+                signUpKeyBoard: TextInputType.visiblePassword,
                 isValid: isPasswordValid(),
               ),
-              PasswordCheckForm(
+              SignUpForm(
                 signUpInfo: '비밀번호확인',
                 signUpHint: '비밀번호를 한번 더 입력해주세요',
                 signUpController: passwordCheckController,
-                // finished: onSubmit,
+                signUpKeyBoard: TextInputType.visiblePassword,
                 isValid: isPasswordCheckValid(),
               ),
               GestureDetector(
                 onTap: onSubmit,
-                child: FractionallySizedBox(
-                  widthFactor: 1,
-                  child: AnimatedContainer(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 16,
-                    ),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                      color: username.isEmpty ||
-                              email.isEmpty ||
-                              password.isEmpty ||
-                              passwordCheck.isEmpty
-                          ? Colors.grey.shade300
-                          : Colors.amber.shade900,
-                    ),
-                    duration: const Duration(milliseconds: 500),
-                    child: const Text(
-                      '가입하기',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
+                child: ChangeColorButton(
+                  disabled: username.isEmpty ||
+                      email.isEmpty ||
+                      password.isEmpty ||
+                      passwordCheck.isEmpty,
                 ),
               ),
             ],

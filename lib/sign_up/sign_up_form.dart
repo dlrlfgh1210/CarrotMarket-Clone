@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 
-class EmailForm extends StatelessWidget {
+class SignUpForm extends StatelessWidget {
   final String signUpInfo, signUpHint;
   final String? isValid;
+  final TextInputType? signUpKeyBoard;
   // final Function finished;
   final TextEditingController signUpController;
-  const EmailForm({
+  const SignUpForm({
     super.key,
     required this.signUpInfo,
     required this.signUpHint,
     required this.signUpController,
     this.isValid,
+    this.signUpKeyBoard,
     // required this.finished,
   });
 
@@ -29,7 +31,7 @@ class EmailForm extends StatelessWidget {
         ),
         TextField(
           controller: signUpController,
-          keyboardType: TextInputType.emailAddress,
+          keyboardType: signUpKeyBoard,
           // onEditingComplete: finished(),
           decoration: InputDecoration(
             hintText: signUpHint,
