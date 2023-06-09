@@ -15,6 +15,8 @@ class _LogInScreenState extends State<LogInScreen> {
 
   Map<String, String> formData = {};
 
+  bool obscureText = true;
+
   void _onSubmitTap() {
     if (_formKey.currentState != null) {
       if (_formKey.currentState!.validate()) {
@@ -28,96 +30,115 @@ class _LogInScreenState extends State<LogInScreen> {
     }
   }
 
+  void onScaffoldTap() {
+    FocusScope.of(context).unfocus();
+  }
+
+  void toggleObscureText() {
+    obscureText = !obscureText;
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('로그인'),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 36,
+    return GestureDetector(
+      onTap: onScaffoldTap,
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('로그인'),
         ),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            children: [
-              const SizedBox(
-                height: 20,
-              ),
-              TextFormField(
-                decoration: InputDecoration(
-                  hintText: '이메일',
-                  enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Colors.grey.shade400,
+        body: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 36,
+          ),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: [
+                const SizedBox(
+                  height: 20,
+                ),
+                TextFormField(
+                  decoration: InputDecoration(
+                    hintText: '이메일',
+                    enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Colors.grey.shade400,
+                      ),
+                    ),
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Colors.grey.shade400,
+                      ),
                     ),
                   ),
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Colors.grey.shade400,
+                  validator: (value) {
+                    if (value != null && value.isEmpty) {
+                      return "이메일을 제대로 입력해주세요";
+                    }
+                    return null;
+                  },
+                  onSaved: (newValue) {
+                    if (newValue != null) {
+                      formData['email'] = newValue;
+                    }
+                  },
+                ),
+                const SizedBox(
+                  height: 16,
+                ),
+                TextFormField(
+                  obscureText: obscureText,
+                  decoration: InputDecoration(
+                    suffix: GestureDetector(
+                      onTap: toggleObscureText,
+                      child: obscureText
+                          ? const Icon(Icons.open_in_new)
+                          : const Icon(Icons.open_in_new_off),
                     ),
+                    hintText: '비밀번호',
+                    enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Colors.grey.shade400,
+                      ),
+                    ),
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Colors.grey.shade400,
+                      ),
+                    ),
+                  ),
+                  validator: (value) {
+                    if (value != null && value.isEmpty) {
+                      return "비밀번호를 제대로 입력해주세요";
+                    }
+                    return null;
+                  },
+                  onSaved: (newValue) {
+                    if (newValue != null) {
+                      formData['password'] = newValue;
+                    }
+                  },
+                ),
+                const SizedBox(
+                  height: 28,
+                ),
+                GestureDetector(
+                  onTap: _onSubmitTap,
+                  child: const ChangeColorButton(
+                    disabled: false,
                   ),
                 ),
-                validator: (value) {
-                  if (value != null && value.isEmpty) {
-                    return "이메일을 제대로 입력해주세요";
-                  }
-                  return null;
-                },
-                onSaved: (newValue) {
-                  if (newValue != null) {
-                    formData['email'] = newValue;
-                  }
-                },
-              ),
-              const SizedBox(
-                height: 16,
-              ),
-              TextFormField(
-                decoration: InputDecoration(
-                  hintText: '비밀번호',
-                  enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Colors.grey.shade400,
-                    ),
-                  ),
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Colors.grey.shade400,
-                    ),
-                  ),
+                const SizedBox(
+                  height: 30,
                 ),
-                validator: (value) {
-                  if (value != null && value.isEmpty) {
-                    return "비밀번호를 제대로 입력해주세요";
-                  }
-                  return null;
-                },
-                onSaved: (newValue) {
-                  if (newValue != null) {
-                    formData['password'] = newValue;
-                  }
-                },
-              ),
-              const SizedBox(
-                height: 28,
-              ),
-              GestureDetector(
-                onTap: _onSubmitTap,
-                child: const ChangeColorButton(
-                  disabled: false,
+                const Divider(
+                  thickness: 1,
+                  color: Colors.grey,
                 ),
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              const Divider(
-                thickness: 1,
-                color: Colors.grey,
-              ),
-              const KakaoLogin(),
-            ],
+                const KakaoLogin(),
+              ],
+            ),
           ),
         ),
       ),
