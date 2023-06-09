@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_carrot_market/home/home_screen.dart';
+import 'package:flutter_carrot_market/log_in/kakao_login.dart';
 import 'package:flutter_carrot_market/sign_up/change_color_button.dart';
 
 class LogInScreen extends StatefulWidget {
@@ -115,6 +116,7 @@ class _LogInScreenState extends State<LogInScreen> {
                 thickness: 1,
                 color: Colors.grey,
               ),
+              const KakaoLogin(),
             ],
           ),
         ),

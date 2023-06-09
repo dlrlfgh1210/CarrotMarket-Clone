@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_carrot_market/first/first_screen.dart';
+import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
 
 void main() {
+  KakaoSdk.init(nativeAppKey: '6caea885f2572cc4acdd89a4c4ef32f0');
   runApp(const MyApp());
 }
 
