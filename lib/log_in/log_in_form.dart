@@ -6,7 +6,7 @@ class LogInForm extends StatelessWidget {
   final bool secret;
   final dynamic saveValue;
   final TextInputType logInKeyBoard;
-  LogInForm({
+  const LogInForm({
     super.key,
     required this.logInHint,
     required this.secret,
@@ -14,8 +14,6 @@ class LogInForm extends StatelessWidget {
     required this.logInKeyBoard,
     this.eyePass,
   });
-
-  Map<String, String> formData = {};
 
   @override
   Widget build(BuildContext context) {

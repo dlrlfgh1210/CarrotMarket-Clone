@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_carrot_market/home/home_screen.dart';
+import 'package:flutter_carrot_market/location/location_screen.dart';
 import 'package:flutter_carrot_market/log_in/kakao_login.dart';
 import 'package:flutter_carrot_market/log_in/log_in_form.dart';
 import 'package:flutter_carrot_market/sign_up/change_color_button.dart';
@@ -24,7 +24,7 @@ class _LogInScreenState extends State<LogInScreen> {
         _formKey.currentState!.save();
         Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (context) => const HomeScreen(),
+            builder: (context) => const LocationScreen(),
           ),
         );
       }
