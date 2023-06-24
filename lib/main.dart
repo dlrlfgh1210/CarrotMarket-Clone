@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_carrot_market/main_navigation_screen.dart';
+import 'package:flutter_carrot_market/navigation/main_navigation_screen.dart';
 import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
 
 void main() {
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
         appBarTheme: const AppBarTheme(
             foregroundColor: Colors.black,
             backgroundColor: Colors.white,
-            elevation: 0,
+            elevation: 1,
             titleTextStyle: TextStyle(
               color: Colors.black,
               fontSize: 20,

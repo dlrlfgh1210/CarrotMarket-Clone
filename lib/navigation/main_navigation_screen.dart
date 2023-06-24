@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_carrot_market/home/home_screen.dart';
-import 'package:flutter_carrot_market/nav_tab.dart';
+import 'package:flutter_carrot_market/navigation/nav_tab.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class MainNavigationScreen extends StatefulWidget {
