@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_carrot_market/location/location_screen.dart';
+import 'package:flutter_carrot_market/main_navigation_screen.dart';
 import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
 
 void main() {
@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
               fontWeight: FontWeight.w500,
             )),
       ),
-      home: const LocationScreen(),
+      home: const MainNavigationScreen(),
     );
   }
 }
